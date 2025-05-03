@@ -13,8 +13,8 @@ $db = $database->getBdd();
 
 $action = $_GET['action'] ?? 'liste';
 
-$controller = new FormationController($db);
-$concontroller = new ConnexionController($db);
+$FormationController = new FormationController($db);
+$ConnexionController = new ConnexionController($db);
 $InscriptionController = new InscriptionController($db); // <- Instancié une seule fois ici
 
 switch ($action) {
@@ -24,12 +24,12 @@ switch ($action) {
         $prix = $_GET['prix'] ?? '';
         $tri = $_GET['tri'] ?? 'titreFormation';
 
-        $controller->liste($lieu, $niveau, $prix, $tri);
+        $FormationController->liste($lieu, $niveau, $prix, $tri);
         break;
 
     case 'detail':
         if (isset($_GET['id'])) {
-            $controller->detail($_GET['id']);
+            $FormationController->detail($_GET['id']);
         }
         break;
 
@@ -38,15 +38,15 @@ switch ($action) {
         break;
 
     case 'login':
-        $concontroller->login($_POST['email'], $_POST['mdp']);
+        $ConnexionController->login($_POST['email'], $_POST['mdp']);
         break;
 
     case 'register':
-        $concontroller->register($_POST);
+        $ConnexionController->register($_POST);
         break;
 
     case 'logout':
-        $concontroller->logout();
+        $ConnexionController->logout();
         break;
 
     case 'inscrire':
@@ -66,7 +66,7 @@ switch ($action) {
         break;
     case 'compte':
         if (isset($_SESSION['client_id'])) {
-            $concontroller->monCompte($_SESSION['client_id']);
+            $ConnexionController->monCompte($_SESSION['client_id']);
         } else {
             header("Location: index.php?action=auth");
         }
@@ -74,13 +74,9 @@ switch ($action) {
      
     case 'updateCompte':
         if (isset($_SESSION['client_id'])) {
-            $concontroller->updateCompte($_SESSION['client_id'], $_POST);
+            $ConnexionController->updateCompte($_SESSION['client_id'], $_POST);
         }
     break;
-        
-    case 'create':
-        $controller->create();
-        break;
 
     default:
         echo "Action non définie.";
