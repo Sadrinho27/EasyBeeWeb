@@ -1,36 +1,49 @@
-Projet3Web
+# EasyBeeWeb
 
-Avant de déployer cette application, assurez-vous que les éléments suivants sont disponibles sur le
-serveur :
-- Serveur Web (Apache ou Nginx)
-- PHP 7.4 ou sup'rieur
-- Serveur MySQL/MariaDB
-- Acc's FTP ou SSH
-- Navigateur web moderne
-Installation
+**EasyBeeWeb** est une entreprise spécialisé qui propose des fomations dans le domaine de l'apiculture. Avant de procéder à son déploiement, assurez-vous que votre environnement serveur répond aux prérequis suivants.
 
-1. Cloner le dépôt
-Connectez-vous ' votre serveur, placez-vous dans le r'pertoire www ou htdocs de votre serveur web,
-puis ex'cutez :
- git clone https://github.com/LeoC76/Projet3Web.git
-ou téléchargez le ZIP via GitHub, puis décompressez-le sur le serveur.
+## ✅ Prérequis
 
-2. Configuration de la base de données
-- Créez une base de données MySQL sur votre serveur.
-- Importez le fichier formation.sql dans votre base de données via phpMyAdmin ou la ligne de
-commande :
- mysql -u utilisateur -p nom_base < chemin/vers/formation.sql
-- Ouvrez le fichier de configuration (ex. config.php, bdd.php ou similaire) et modifiez les paramètres
-de connexion à la base :
- $host = 'localhost';
- $dbname = 'nom_base';
- $user = 'utilisateur';
- $password = 'motdepasse';
+* Serveur Web Apache
+* PHP version 7.4 ou supérieure
+* Serveur MySQL ou MariaDB
 
-3. Configurer les droits
- chmod -R 755 Projet3Web/
+---
 
-4. Accéder à l'application
-Ouvrez un navigateur web et accédez à l'URL :
-http://votre-serveur/Projet3Web/
+## 🚀 Installation
 
+### 1. Cloner le dépôt
+
+Connectez-vous à votre serveur et placez-vous dans le répertoire racine de votre serveur web (par exemple : `www` ou `htdocs`), puis exécutez la commande suivante :
+
+```bash
+git clone https://github.com/Sadrino27/EasyBeeWeb.git
+```
+
+> 💡 Vous pouvez également télécharger le projet au format ZIP depuis GitHub, puis le décompresser dans le répertoire du serveur.
+
+---
+
+### 2. Configuration de la base de données
+
+1. Importez le fichier `easybee_projet3.sql` dans votre base de données via **phpMyAdmin** ou un autre outil de gestion SQL.
+2. Ouvrez le fichier `database.php` (situé dans le projet) et modifiez les informations de connexion :
+
+```php
+$host = 'localhost';
+$dbname = 'nom_de_votre_base';
+$user = 'votre_utilisateur';
+$password = 'votre_mot_de_passe';
+```
+
+---
+
+### 3. Accéder à l'application
+
+Ouvrez votre navigateur et accédez à l'URL suivante :
+
+```
+http://votre-serveur/EasyBeeWeb/MVC
+```
+
+> Assurez-vous que le dossier `EasyBeeWeb` est bien placé dans le répertoire accessible par votre serveur web.
