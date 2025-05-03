@@ -1,49 +1,39 @@
-# EasyBeeWeb
+# 🐝EasyBee - Gestion des formations apicoles
 
-**EasyBeeWeb** est une entreprise spécialisé qui propose des fomations dans le domaine de l'apiculture. Avant de procéder à son déploiement, assurez-vous que votre environnement serveur répond aux prérequis suivants.
+![Logo](logoEasybee.png)
 
-## ✅ Prérequis
+## 🌍Contexte
+EasyBee est une entreprise fictive spécialisée dans la vente de matériel apicole (ruches, combinaisons, pots, etc.) et la formation en apiculture. Pour optimiser la gestion des formations, une application web a été développée.  
+Cette application est destinée :  
+- aux **clients**, qui peuvent consulter les formations disponibles et s'y inscrire,  
+- aux **administrateurs**, qui peuvent gérer les inscriptions et trier les participants selon divers critères.
 
-* Serveur Web Apache
-* PHP version 7.4 ou supérieure
-* Serveur MySQL ou MariaDB
 
----
+## ⚙️Fonctionnalités 
+ **Clients** : 
+  - Voir les détails des formations proposées par l'entreprise (dates, contenu, prix, etc.).
+  - S'inscrire à une formation.
 
-## 🚀 Installation
 
-### 1. Cloner le dépôt
+## 📋Prérequis
+- PHP (8.2 minimum)
+- IDE compatible (VS Code, Intellij, etc.)
+- Serveur web (WAMP, XAMPP, etc)
+- MySQL ou un autre serveur de base de données relationnelle
 
-Connectez-vous à votre serveur et placez-vous dans le répertoire racine de votre serveur web (par exemple : `www` ou `htdocs`), puis exécutez la commande suivante :
 
-```bash
-git clone https://github.com/Sadrino27/EasyBeeWeb.git
-```
+## 🚀Installation  
+#### Base de données :
+ 1. Importez le fichier  *bdd.sql* dans votre serveur de base de données pour créer la structure de la base.   
+ 2. Importez le fichier *data.sql* pour y ajouter les données de test (formations, utilisateurs, etc.).  
+#### Application :  
+ 1. Clonez ou téléchargez ce dépôt.
 
-> 💡 Vous pouvez également télécharger le projet au format ZIP depuis GitHub, puis le décompresser dans le répertoire du serveur.
+#### Lancement :  
+ 1. Accédez à l'application : ouvrez votre navigateur et rendez-vous sur http://localhost.
 
----
+## 📝 Notes supplémentaires : 
+Pour vous connecter, utilisez les identifiants présents dans les données de test.
 
-### 2. Configuration de la base de données
-
-1. Importez le fichier `easybee_projet3.sql` dans votre base de données via **phpMyAdmin** ou un autre outil de gestion SQL.
-2. Ouvrez le fichier `database.php` (situé dans le projet) et modifiez les informations de connexion :
-
-```php
-$host = 'localhost';
-$dbname = 'nom_de_votre_base';
-$user = 'votre_utilisateur';
-$password = 'votre_mot_de_passe';
-```
-
----
-
-### 3. Accéder à l'application
-
-Ouvrez votre navigateur et accédez à l'URL suivante :
-
-```
-http://votre-serveur/EasyBeeWeb/MVC
-```
-
-> Assurez-vous que le dossier `EasyBeeWeb` est bien placé dans le répertoire accessible par votre serveur web.
+## 👤Auteur
+Développé par [@Sadrinho27](https://github.com/Sadrinho27).
