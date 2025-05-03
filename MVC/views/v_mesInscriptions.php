@@ -1,11 +1,11 @@
-<?php include 'views/layouts/nav.php'; ?>
-<h2>Mes Inscriptions</h2>
 <link rel="stylesheet" href="style.css">
 
+<h2>Mes Inscriptions</h2>
+
 <?php if (empty($inscriptions)) : ?>
-    <p>Vous n'êtes inscrit à aucune formation.</p>
+    <p class="no-inscription-message">Vous n'êtes inscrit à aucune formation.</p>
 <?php else : ?>
-    <table border="1">
+    <table class="inscription-table">
         <thead>
             <tr>
                 <th>Titre</th>

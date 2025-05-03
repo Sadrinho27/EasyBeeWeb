@@ -1,9 +1,8 @@
-<?php include 'views/layouts/nav.php'; ?>
 <link rel="stylesheet" href="style.css">
 
 <h2>Bienvenue</h2>
 
-<div style="display: flex; gap: 40px;">
+<div class="form-container">
 
     <!-- Connexion -->
     <form method="POST" action="index.php?action=login">

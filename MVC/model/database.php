@@ -2,9 +2,9 @@
 
 class Database {
     private $host = "localhost";
-    private $db_name = "formation";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "easybee_projet3";
+    private $username = "easybee_projet3";
+    private $password = "Yrgm8Knu8-tDoOUM";
     public $conn;
 
     public function getBdd() {

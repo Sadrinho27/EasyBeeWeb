@@ -6,6 +6,8 @@ require_once 'controler/c_formation.php';
 require_once 'controler/c_connexion.php';
 require_once 'controler/c_inscriptionform.php';
 
+include 'views/layouts/nav.php';
+
 $database = new Database();
 $db = $database->getBdd();
 

@@ -1,8 +1,8 @@
-<?php include 'views/layouts/nav.php'; ?>
-<h2>Mon compte</h2>
 <link rel="stylesheet" href="style.css">
 
-<form method="POST" action="index.php?action=updateCompte">
+<h2>Mon compte</h2>
+
+<form method="POST" action="index.php?action=updateCompte" class="compte-form">
     <label>Nom :</label><br>
     <input type="text" name="nom" value="<?= htmlspecialchars($client['nomClient']) ?>" required><br><br>
 

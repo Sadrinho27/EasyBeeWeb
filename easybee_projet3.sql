@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : dim. 27 avr. 2025 à 12:44
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le : sam. 03 mai 2025 à 13:07
+-- Version du serveur : 9.1.0
+-- Version de PHP : 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `formation`
+-- Base de données : `easybee_projet3`
 --
+CREATE DATABASE IF NOT EXISTS `easybee_projet3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `easybee_projet3`;
 
 -- --------------------------------------------------------
 
@@ -27,9 +29,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `associer`
 --
 
-CREATE TABLE `associer` (
-  `idForm` int(11) NOT NULL,
-  `idTheme` int(11) NOT NULL
+DROP TABLE IF EXISTS `associer`;
+CREATE TABLE IF NOT EXISTS `associer` (
+  `idForm` int NOT NULL,
+  `idTheme` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idTheme`),
+  KEY `fk_associer_theme` (`idTheme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -38,9 +43,12 @@ CREATE TABLE `associer` (
 -- Structure de la table `attribuer`
 --
 
-CREATE TABLE `attribuer` (
-  `idForm` int(11) NOT NULL,
-  `idFormateur` int(11) NOT NULL
+DROP TABLE IF EXISTS `attribuer`;
+CREATE TABLE IF NOT EXISTS `attribuer` (
+  `idForm` int NOT NULL,
+  `idFormateur` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idFormateur`),
+  KEY `fk_attribuer_formateur` (`idFormateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -49,22 +57,23 @@ CREATE TABLE `attribuer` (
 -- Structure de la table `clients`
 --
 
-CREATE TABLE `clients` (
-  `id` int(11) NOT NULL,
-  `nomClient` varchar(255) DEFAULT NULL,
-  `prenomClient` varchar(255) DEFAULT NULL,
-  `emailClient` varchar(255) DEFAULT NULL,
-  `mdpClient` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE IF NOT EXISTS `clients` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nomClient` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `prenomClient` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `emailClient` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mdpClient` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_email` (`emailClient`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `clients`
 --
 
 INSERT INTO `clients` (`id`, `nomClient`, `prenomClient`, `emailClient`, `mdpClient`) VALUES
-(1, 'Sarkozy', 'titouan', 'titouansarkozy@gmail.com', '$2y$10$S8.sp5DhqM4d7XetvuoQQupeFhwYxQZc4v8AqxDFTfGsKF8MwOd/K'),
-(2, 'babouin', 'enzo', 'babouinenzo@gmail.com', '$2y$10$bP2PdiFju6gk2Sa07s0IEu8AtQd.CiLceZ0BLjAURatz/XUDZadtO'),
-(3, 'etheh', 'egehe', 'erhrsh@gmail.com', '$2y$10$KO85A0emsfMQNAPf82QJXOzVKmsAG1v7XIFn8ZApmfveRY/UCkZ7m');
+(6, 'Demeillez Tabere', 'Titouan', 'titouan.tabere@gmail.com', '$2y$10$nj8ZNbW.dMEI1fX3CJ9rru2QKabxCS4ZFc7EnNnPN3tjTFD1.V4X.');
 
 -- --------------------------------------------------------
 
@@ -72,9 +81,12 @@ INSERT INTO `clients` (`id`, `nomClient`, `prenomClient`, `emailClient`, `mdpCli
 -- Structure de la table `correspond`
 --
 
-CREATE TABLE `correspond` (
-  `idForm` int(11) NOT NULL,
-  `idNiv` int(11) NOT NULL
+DROP TABLE IF EXISTS `correspond`;
+CREATE TABLE IF NOT EXISTS `correspond` (
+  `idForm` int NOT NULL,
+  `idNiv` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idNiv`),
+  KEY `fk_correspond_niv` (`idNiv`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,9 +95,11 @@ CREATE TABLE `correspond` (
 -- Structure de la table `equipement_form`
 --
 
-CREATE TABLE `equipement_form` (
-  `id` int(11) NOT NULL,
-  `libelle` varchar(255) DEFAULT NULL
+DROP TABLE IF EXISTS `equipement_form`;
+CREATE TABLE IF NOT EXISTS `equipement_form` (
+  `id` int NOT NULL,
+  `libelle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -94,12 +108,14 @@ CREATE TABLE `equipement_form` (
 -- Structure de la table `formateurs`
 --
 
-CREATE TABLE `formateurs` (
-  `id` int(11) NOT NULL,
-  `nomFormateur` varchar(255) DEFAULT NULL,
-  `prenomFormateur` varchar(255) DEFAULT NULL,
-  `mailFormateur` varchar(255) DEFAULT NULL,
-  `telFormateur` varchar(20) DEFAULT NULL
+DROP TABLE IF EXISTS `formateurs`;
+CREATE TABLE IF NOT EXISTS `formateurs` (
+  `id` int NOT NULL,
+  `nomFormateur` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `prenomFormateur` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mailFormateur` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telFormateur` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -108,18 +124,23 @@ CREATE TABLE `formateurs` (
 -- Structure de la table `formations`
 --
 
-CREATE TABLE `formations` (
-  `id` int(11) NOT NULL,
-  `titreFormation` varchar(255) DEFAULT NULL,
-  `descriptionFormation` text DEFAULT NULL,
+DROP TABLE IF EXISTS `formations`;
+CREATE TABLE IF NOT EXISTS `formations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titreFormation` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descriptionFormation` text COLLATE utf8mb4_general_ci,
   `prixFormation` decimal(10,2) DEFAULT NULL,
   `dateDebutForm` date DEFAULT NULL,
   `dtFinForm` date DEFAULT NULL,
-  `placeMaxForm` int(11) DEFAULT NULL,
-  `idModalité` int(11) DEFAULT NULL,
-  `idLieu` int(11) DEFAULT NULL,
-  `idNiv` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `placeMaxForm` int DEFAULT NULL,
+  `idModalité` int DEFAULT NULL,
+  `idLieu` int DEFAULT NULL,
+  `idNiv` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_modalite` (`idModalité`),
+  KEY `fk_lieu` (`idLieu`),
+  KEY `fk_niveau` (`idNiv`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `formations`
@@ -139,12 +160,15 @@ INSERT INTO `formations` (`id`, `titreFormation`, `descriptionFormation`, `prixF
 -- Structure de la table `inscrire`
 --
 
-CREATE TABLE `inscrire` (
-  `idUtilisateur` int(11) NOT NULL,
-  `idForm` int(11) NOT NULL,
-  `etatInscription` varchar(50) DEFAULT NULL,
+DROP TABLE IF EXISTS `inscrire`;
+CREATE TABLE IF NOT EXISTS `inscrire` (
+  `idUtilisateur` int NOT NULL,
+  `idForm` int NOT NULL,
+  `etatInscription` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `dateInscription` date DEFAULT NULL,
-  `montantRegle` decimal(10,2) DEFAULT NULL
+  `montantRegle` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`idUtilisateur`,`idForm`),
+  KEY `fk_inscrire_form` (`idForm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -152,7 +176,9 @@ CREATE TABLE `inscrire` (
 --
 
 INSERT INTO `inscrire` (`idUtilisateur`, `idForm`, `etatInscription`, `dateInscription`, `montantRegle`) VALUES
-(1, 1, 'En attente', '2025-04-27', 20.00);
+(6, 1, 'En attente', '2025-05-03', 20.00),
+(6, 6, 'En attente', '2025-05-03', 150.00),
+(6, 8, 'En attente', '2025-05-03', 500.00);
 
 -- --------------------------------------------------------
 
@@ -160,10 +186,12 @@ INSERT INTO `inscrire` (`idUtilisateur`, `idForm`, `etatInscription`, `dateInscr
 -- Structure de la table `lieu_form`
 --
 
-CREATE TABLE `lieu_form` (
-  `id` int(11) NOT NULL,
-  `libelle` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `lieu_form`;
+CREATE TABLE IF NOT EXISTS `lieu_form` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `lieu_form`
@@ -182,10 +210,12 @@ INSERT INTO `lieu_form` (`id`, `libelle`) VALUES
 -- Structure de la table `modalite_form`
 --
 
-CREATE TABLE `modalite_form` (
-  `id` int(11) NOT NULL,
-  `libelle` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `modalite_form`;
+CREATE TABLE IF NOT EXISTS `modalite_form` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `modalite_form`
@@ -202,9 +232,12 @@ INSERT INTO `modalite_form` (`id`, `libelle`) VALUES
 -- Structure de la table `necessaire`
 --
 
-CREATE TABLE `necessaire` (
-  `idForm` int(11) NOT NULL,
-  `idEquipement` int(11) NOT NULL
+DROP TABLE IF EXISTS `necessaire`;
+CREATE TABLE IF NOT EXISTS `necessaire` (
+  `idForm` int NOT NULL,
+  `idEquipement` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idEquipement`),
+  KEY `fk_necessaire_equipement` (`idEquipement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -213,10 +246,12 @@ CREATE TABLE `necessaire` (
 -- Structure de la table `niveau_form`
 --
 
-CREATE TABLE `niveau_form` (
-  `id` int(11) NOT NULL,
-  `libelle` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `niveau_form`;
+CREATE TABLE IF NOT EXISTS `niveau_form` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `niveau_form`
@@ -232,9 +267,12 @@ INSERT INTO `niveau_form` (`id`, `libelle`) VALUES
 -- Structure de la table `prerequis`
 --
 
-CREATE TABLE `prerequis` (
-  `idForm` int(11) NOT NULL,
-  `idFormReq` int(11) NOT NULL
+DROP TABLE IF EXISTS `prerequis`;
+CREATE TABLE IF NOT EXISTS `prerequis` (
+  `idForm` int NOT NULL,
+  `idFormReq` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idFormReq`),
+  KEY `fk_prerequis_formreq` (`idFormReq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -243,9 +281,12 @@ CREATE TABLE `prerequis` (
 -- Structure de la table `situer`
 --
 
-CREATE TABLE `situer` (
-  `idForm` int(11) NOT NULL,
-  `idLieu` int(11) NOT NULL
+DROP TABLE IF EXISTS `situer`;
+CREATE TABLE IF NOT EXISTS `situer` (
+  `idForm` int NOT NULL,
+  `idLieu` int NOT NULL,
+  PRIMARY KEY (`idForm`,`idLieu`),
+  KEY `fk_situer_lieu` (`idLieu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -254,149 +295,12 @@ CREATE TABLE `situer` (
 -- Structure de la table `theme`
 --
 
-CREATE TABLE `theme` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL
+DROP TABLE IF EXISTS `theme`;
+CREATE TABLE IF NOT EXISTS `theme` (
+  `id` int NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `associer`
---
-ALTER TABLE `associer`
-  ADD PRIMARY KEY (`idForm`,`idTheme`),
-  ADD KEY `fk_associer_theme` (`idTheme`);
-
---
--- Index pour la table `attribuer`
---
-ALTER TABLE `attribuer`
-  ADD PRIMARY KEY (`idForm`,`idFormateur`),
-  ADD KEY `fk_attribuer_formateur` (`idFormateur`);
-
---
--- Index pour la table `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_email` (`emailClient`);
-
---
--- Index pour la table `correspond`
---
-ALTER TABLE `correspond`
-  ADD PRIMARY KEY (`idForm`,`idNiv`),
-  ADD KEY `fk_correspond_niv` (`idNiv`);
-
---
--- Index pour la table `equipement_form`
---
-ALTER TABLE `equipement_form`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `formateurs`
---
-ALTER TABLE `formateurs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `formations`
---
-ALTER TABLE `formations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_modalite` (`idModalité`),
-  ADD KEY `fk_lieu` (`idLieu`),
-  ADD KEY `fk_niveau` (`idNiv`);
-
---
--- Index pour la table `inscrire`
---
-ALTER TABLE `inscrire`
-  ADD PRIMARY KEY (`idUtilisateur`,`idForm`),
-  ADD KEY `fk_inscrire_form` (`idForm`);
-
---
--- Index pour la table `lieu_form`
---
-ALTER TABLE `lieu_form`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `modalite_form`
---
-ALTER TABLE `modalite_form`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `necessaire`
---
-ALTER TABLE `necessaire`
-  ADD PRIMARY KEY (`idForm`,`idEquipement`),
-  ADD KEY `fk_necessaire_equipement` (`idEquipement`);
-
---
--- Index pour la table `niveau_form`
---
-ALTER TABLE `niveau_form`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `prerequis`
---
-ALTER TABLE `prerequis`
-  ADD PRIMARY KEY (`idForm`,`idFormReq`),
-  ADD KEY `fk_prerequis_formreq` (`idFormReq`);
-
---
--- Index pour la table `situer`
---
-ALTER TABLE `situer`
-  ADD PRIMARY KEY (`idForm`,`idLieu`),
-  ADD KEY `fk_situer_lieu` (`idLieu`);
-
---
--- Index pour la table `theme`
---
-ALTER TABLE `theme`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `formations`
---
-ALTER TABLE `formations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT pour la table `lieu_form`
---
-ALTER TABLE `lieu_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `modalite_form`
---
-ALTER TABLE `modalite_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT pour la table `niveau_form`
---
-ALTER TABLE `niveau_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

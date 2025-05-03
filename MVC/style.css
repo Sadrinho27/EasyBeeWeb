@@ -1,48 +1,346 @@
-
+/* ==== GLOBAL ==== */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+h1, h2, h3 {
+    text-align: center;
+    color: #F1C232;  /* Jaune miel */
+}
+
+a {
+    color: #F1C232;  /* Jaune miel */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==== NAVIGATION ==== */
+nav {
+    display: flex;
+    justify-content: space-between;  /* Pour espacer les éléments */
+    align-items: center;  /* Aligner verticalement */
+    background-color: #333333;  /* Noir */
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(255, 204, 51, 0.3);  /* Ombre subtile jaune */
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;  /* Alignement du logo et du titre */
+}
+
+.logo {
+    height: 40px;  /* Ajustez la taille du logo */
+    margin-right: 10px;  /* Espacement entre le logo et le titre */
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #F1C232;  /* Jaune miel */
+}
+
+.nav-right {
+    display: flex;
+    gap: 20px;  /* Espacement entre les liens */
+}
+
+nav a {
+    color: #F1C232;  /* Jaune miel */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding-bottom: 5px;
+}
+
+nav a:hover {
+    color: #FFFFFF;  /* Blanc */
+    border-bottom: 2px solid #F1C232;  /* Jaune miel */
+}
+
+/* ==== PAGE ACCUEIL: FORMULAIRES CONNEXION / INSCRIPTION ==== */
+div.form-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 50px;
+}
+
 form {
-    background: white;
-    max-width: 100%;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.3);  /* Ombre jaune */
+    width: 300px;
+}
+
+form h3 {
+    color: #F1C232;  /* Jaune miel */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #dddddd;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"],
+select {
     width: 100%;
     padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #444;
     border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+input:focus, select:focus {
+    border-color: #F1C232;  /* Jaune miel */
+    outline: none;
 }
 
 button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
     width: 100%;
-    font-size: 16px;
+    padding: 10px;
+    background-color: #F1C232;  /* Jaune miel */
+    color: #333333;  /* Noir */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #CC8C00;  /* Jaune foncé */
 }
 
-h2 {
+/* ==== PAGE FORMATIONS ==== */
+.container-formations {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin: 50px auto;
+    max-width: 1200px;
+}
+
+.filter-form {
+    flex: 1;
+    align-self: flex-start;
+}
+
+.table-formations {
+    flex: 3;
+    min-width: 600px;
+}
+
+/* Formulaire de filtre */
+form.filter-form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 204, 51, 0.2);  /* Ombre jaune */
+    color: #f0f0f0;
+    display: block;
+    width: 100%;
+}
+
+/* Tableau des formations */
+table {
+    width: 100%;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.2);  /* Ombre jaune */
+}
+
+thead {
+    background-color: #2a2a2a;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #333;
     text-align: center;
-    margin-top: 30px;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
+th {
+    color: #F1C232;  /* Jaune miel */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #242424;
+}
+
+/* Confirmation */
+div.confirmation {
+    text-align: center;
+    margin: 20px auto;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* ==== PAGE COMPTE ==== */
+.compte-form {
+    background-color: #1e1e1e;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.3);  /* Ombre jaune */
+}
+
+.compte-form label {
+    color: #dddddd;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.compte-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.compte-form input:focus {
+    border-color: #F1C232;  /* Jaune miel */
+    outline: none;
+}
+
+.compte-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #F1C232;  /* Jaune miel */
+    color: #333333;  /* Noir */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.compte-form button:hover {
+    background-color: #CC8C00;  /* Jaune foncé */
+}
+
+/* ==== PAGE INSCRIPTIONS ==== */
+.inscription-table {
+    width: 80%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.3);  /* Ombre jaune */
+}
+
+.inscription-table thead {
+    background-color: #2a2a2a;
+}
+
+.inscription-table th,
+.inscription-table td {
+    padding: 15px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.inscription-table th {
+    color: #F1C232;  /* Jaune miel */
+    font-weight: bold;
+}
+
+.inscription-table tr:nth-child(even) {
+    background-color: #242424;
+}
+
+.no-inscription-message {
+    text-align: center;
+    color: #999;
+    margin-top: 50px;
+    font-style: italic;
+}
+
+/* ==== PAGE DETAIL FORMATION ==== */
+.formation-detail {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 0 15px rgba(255, 204, 51, 0.3);  /* Ombre jaune */
+    color: #f0f0f0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.formation-detail p {
+    margin-bottom: 12px;
+}
+
+.formation-detail strong {
+    color: #F1C232;  /* Jaune miel */
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #F1C232;  /* Jaune miel */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #CC8C00;  /* Jaune foncé */
+}
+
+.success-message {
+    color: #00ff88;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.error-message {
+    color: #ff0000;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}

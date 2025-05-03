@@ -28,7 +28,7 @@ class FormationController {
         $lieux = $formations->getLieux();    // Déplacé dans le modèle (voir plus bas)
         $niveaux = $formations->getNiveaux(); // idem
     
-        require_once 'views/v_listFormation.php';
+        require_once 'views/v_listeFormation.php';
     }
     public function detail($id) {
         $formations = new Formations($this->db);
