@@ -84,6 +84,13 @@ http://localhost/EasyBeeWeb/MVC
 
 ---
 
+## 🖼️ Aperçu
+
+![ListeFormations](media/lsitFormations.png)
+![DetailFormation](media/detailFormation.png)
+
+---
+
 ## 👤 Auteur
 
 Développé par [@Sadrinho27](https://github.com/Sadrinho27)
