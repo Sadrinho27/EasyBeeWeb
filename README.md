@@ -86,8 +86,8 @@ http://localhost/EasyBeeWeb/MVC
 
 ## 🖼️ Aperçu
 
-![ListeFormations](media/lsitFormations.png)
-![DetailFormation](media/detailFormation.png)
+![ListeFormations](listFormations.png)
+![DetailFormation](detailFormation.png)
 
 ---
 
